@@ -20,16 +20,16 @@ WIN_COMBINATIONS = [ #nested array of every winning combination
   ]
   
 def won?(board)
-  WIN_COMBINATIONS.each do |win_combination|
-    win_index_1 = win_combination[0]
-    win_index_2 = win_combination[1]
-    win_index_3 = win_combination[2]
+  WIN_COMBINATIONS.each do |win_combination| # iterates through each element of the nested array
+    win_index_1 = win_combination[0] # returns index 0 of each element
+    win_index_2 = win_combination[1] # returns index 1 of each element
+    win_index_3 = win_combination[2] # returns index 2 of each element
 
-    position_1 = board[win_index_1]
-    position_2 = board[win_index_2]
-    position_3 = board[win_index_3]
+    position_1 = board[win_index_1] # applies the index to the board, which is a position
+    position_2 = board[win_index_2] # applies the index to the board, which is a position
+    position_3 = board[win_index_3] # applies the index to the board, which is a position
 
-    if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O"
+    if position_1 == "X" && position_2 == "X" && position_3 == "X" || position_1 == "O" && position_2 == "O" && position_3 == "O" # if index 0,1,2 (position 1,2,3) is all X or all O
       return win_combination
     end
   end
@@ -38,32 +38,32 @@ else
 end
 
 def full?(board) #
-  board.all? do |box|
-    box == "X" || box == "O"
+  board.all? do |box| #is the board full?
+    box == "X" || box == "O" # determines is board is full of X's or O's
   end  
 end
 
 def draw?(board)
-    if full?(board) == true && won?(board) == false
-      return true
+    if full?(board) == true && won?(board) == false # if board is full but no winner
+      return true # is a draw
     else
-      return false
+      return false # isn't a draw
     end
   end
 
 def over?(board)
-  if won?(board) || draw?(board) || full?(board)
-  return true
+  if won?(board) || draw?(board) || full?(board) # if there's winner or the game is a draw or board is full
+  return true # game is over
   else
-    return false
+    return false # game isn't over
   end
 end
 
 def winner(board)
-  if won?(board) && board[won?(board)[0]] == "X"
-    return "X"
-  elsif won?(board) && board[won?(board)[0]] == "O"
-    return "O"
+  if won?(board) && board[won?(board)[0]] == "X" # if there's a winner and index 0 of won?(board) is X
+    return "X" # X is the winne
+  elsif won?(board) && board[won?(board)[0]] == "O" # if there's a winner and index 0 of won?(board) is O
+    return "O" #O is the winne
   else
     nil
   end
